@@ -5,10 +5,12 @@ public class SoldierSpawn : MonoBehaviour
 {
     public int health = 100;
     public int attackPower = 10;
+
     public int goldCost = 50;
 
     private Castle enemyCastle;
     public float moveSpeed = 2.0f;
+    public float attackSpeed = 1;
 
     private void Start()
     {
@@ -25,17 +27,23 @@ public class SoldierSpawn : MonoBehaviour
     {
         if (enemyCastle != null)
         {
+            float stopDistance = 25f;
 
-            Vector3 targetPosition=new Vector3(enemyCastle.transform.position.x + 25f,transform.position.y,enemyCastle.transform.position.z);
-            Vector3 direction = (targetPosition - transform.position).normalized;
+            Vector3 directionToCastle=(enemyCastle.transform.position - transform.position).normalized;
 
-            if(transform.position.x!=targetPosition.x)
+            Vector3 targetPosition=new Vector3
+            (enemyCastle.transform.position.x - directionToCastle.x * stopDistance,transform.position.y,enemyCastle.transform.position.z);
+            float distanceToTarget=Vector3.Distance(transform.position, targetPosition);
+
+            if(distanceToTarget >0.1f)
             {
+                Vector3 direction = (targetPosition - transform.position).normalized;
+
                 transform.position += direction * moveSpeed * Time.deltaTime;
             }
             else
             {
-                transform.position=new Vector3(transform.position.x,transform.position.y,transform.position.z);
+                AttackCastle();
             }
             
         }
@@ -55,7 +63,7 @@ public class SoldierSpawn : MonoBehaviour
     {
         if(enemyCastle != null)
         {
-            enemyCastle.TakeDamage(attackPower);
+            enemyCastle.TakeDamage(attackPower,attackSpeed);
         }
     }
 

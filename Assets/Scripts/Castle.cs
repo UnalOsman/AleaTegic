@@ -3,7 +3,8 @@ using UnityEngine;
 public class Castle : MonoBehaviour
 {
     public int maxHealth = 1000;
-    private int currentHealth;
+    private float currentHealth;
+
 
     private void Start()
     {
@@ -11,9 +12,9 @@ public class Castle : MonoBehaviour
     }
 
 
-    public void TakeDamage(int  damage)
+    public void TakeDamage(int  damage,float attackSpeed=1)
     {
-        currentHealth -= damage;
+        currentHealth -= damage * attackSpeed * Time.deltaTime * 100f;
 
         Debug.Log("Kale hasar aldý,kalenin þuanki caný : " +  currentHealth);
 
@@ -26,6 +27,7 @@ public class Castle : MonoBehaviour
     void DestroyCastle()
     {
         Debug.Log("Kale yok edildi.");
+        Destroy(gameObject);
     }
 
 
