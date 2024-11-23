@@ -8,7 +8,7 @@ public class SoldierSO : ScriptableObject
     public int health;
     public int maxHealth;
     public int minHealth;
-    public int GoldValue;
+    public int GoldCost;
     public int featureValue;
     public float attackSpeed;
 
