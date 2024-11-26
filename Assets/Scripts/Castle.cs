@@ -14,7 +14,7 @@ public class Castle : MonoBehaviour
 
     public void TakeDamage(int  damage,float attackSpeed=1)
     {
-        currentHealth -= damage * attackSpeed * Time.deltaTime * 100f;
+        currentHealth -= damage * attackSpeed;
 
         Debug.Log("Kale hasar aldý,kalenin þuanki caný : " +  currentHealth);
 

@@ -4,12 +4,14 @@ using UnityEngine;
 public class SoldierSO : ScriptableObject
 {
     public string soldierName;
-    public int attackValue;
+    public GameObject soldierPrefab;
+    public int attackPower;
     public int health;
     public int maxHealth;
     public int minHealth;
     public int GoldCost;
     public int featureValue;
     public float attackSpeed;
+    public float moveSpeed;
 
 }

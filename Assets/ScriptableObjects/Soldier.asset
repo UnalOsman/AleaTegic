@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Soldier
   m_EditorClassIdentifier: 
   soldierName: Soldier
-  attackValue: 5
+  soldierPrefab: {fileID: 9164053489645117250, guid: 689a3a151967e474f92473900e6ba03d, type: 3}
+  attackPower: 10
   health: 50
   maxHealth: 50
   minHealth: 0
-  GoldValue: 5
+  GoldCost: 20
   featureValue: 4
   attackSpeed: 1
+  moveSpeed: 7
