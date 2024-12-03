@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7362567136978463043}
   - component: {fileID: -6972612431658686961}
   m_Layer: 0
-  m_Name: Spearman
+  m_Name: ShieldedSoldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c4b893928d81f574eadc574bb3713f54, type: 2}
+  - {fileID: 2100000, guid: 3e211d5e22fa2fa42961f0fa832c2648, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -10,7 +10,7 @@ public class SoldierSpawnManager : MonoBehaviour
 
     public void SpawnSoldier(int index)
     {
-        if(index >=0 && index < allSoldiers.Count)
+        if(index >=0 && index < allSoldiers.Count && targetCastle!=null)
         {
             SoldierSO selectedSoldier = allSoldiers[index];
 
