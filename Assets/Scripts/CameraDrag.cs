@@ -4,6 +4,7 @@ using UnityEngine;
 public class CameraDrag : MonoBehaviour
 {
     private Vector2 dragOrigin; // sürüklemenin baþlangýç noktasý
+    private Vector3 velocity= Vector3.zero;
     private Vector3 targetPosition;
     private Vector3 initialCameraPosition; // kameranýn baþlangýç pozisyonu
     private bool isDragging=false; // sürükleniyor mu?
@@ -20,28 +21,62 @@ public class CameraDrag : MonoBehaviour
 
     private void Update()
     {
-        CameraForPc();
+        if(Application.isMobilePlatform)
+        {
+            HandleTouchInput();
+        }
+        else
+        {
+            HandleMouseInput();
+            HandleKeyboardInput();
+        }
         
+        transform.position = Vector3.SmoothDamp(transform.position,targetPosition,ref velocity,smoothSpeed);
     }
 
-    private void CameraForPc()
+    private void HandleKeyboardInput()
     {
-        float x = Input.GetAxis("Horizontal");
-        if(Input.GetKeyDown(KeyCode.A))
+        float moveX = 0;
+
+        if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
-            targetPosition -= new Vector3(x * Time.deltaTime * dragSpeed, targetPosition.y, targetPosition.z);
-            transform.position += Vector3.Lerp(targetPosition, transform.position, smoothSpeed);
+            moveX = -dragSpeed * Time.deltaTime;
         }
-        if(Input.GetKeyDown(KeyCode.D))
+        else if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
-            targetPosition += new Vector3(x * Time.deltaTime * dragSpeed, targetPosition.y, targetPosition.z);
-            transform.position += Vector3.Lerp(targetPosition, transform.position, smoothSpeed);
+            moveX = dragSpeed * Time.deltaTime;
         }
-        
+
+        if(moveX !=0)
+        {
+            float newX=Mathf.Clamp(transform.position.x + moveX, minLimits.x, maxLimits.x);
+            targetPosition = new Vector3(newX, transform.position.y, transform.position.z);
+        }
     }
 
-    /*
-    private void CameraForPhone()
+    private void HandleMouseInput()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            dragOrigin =(Vector2)Input.mousePosition;
+            isDragging = true;
+        }
+        else if (Input.GetMouseButton(0) && isDragging)
+        {
+            Vector2 difference = Camera.main.ScreenToViewportPoint(dragOrigin -(Vector2)Input.mousePosition);
+            float moveX = difference.x * dragSpeed;
+
+            float newX = Mathf.Clamp(transform.position.x + moveX, minLimits.x, maxLimits.x);
+            targetPosition = new Vector3(newX, transform.position.y, transform.position.z);
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            isDragging = false;
+        }
+    }
+
+
+    private void HandleTouchInput()
     {
         if (Input.touchCount == 1)
         {
@@ -56,7 +91,7 @@ public class CameraDrag : MonoBehaviour
             else if (touch.phase == TouchPhase.Moved && isDragging == true)
             {
                 // Sürükleme devam ederken
-                Vector2 difference = dragOrigin - touch.position;
+                Vector2 difference = Camera.main.ScreenToViewportPoint(dragOrigin - touch.position);
                 float moveX = difference.x * dragSpeed;
 
 
@@ -75,5 +110,5 @@ public class CameraDrag : MonoBehaviour
             }
         }
     }
-    */
+    
 }
