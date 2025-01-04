@@ -40,11 +40,11 @@ public class CameraDrag : MonoBehaviour
 
         if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
-            moveX = -dragSpeed * Time.deltaTime;
+            moveX = -dragSpeed * Time.deltaTime * 100;
         }
         else if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
-            moveX = dragSpeed * Time.deltaTime;
+            moveX = dragSpeed * Time.deltaTime * 100;
         }
 
         if(moveX !=0)

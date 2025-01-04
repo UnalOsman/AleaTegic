@@ -20,5 +20,5 @@ MonoBehaviour:
   minHealth: 0
   GoldCost: 25
   featureValue: 2
-  attackSpeed: 1
+  attackSpeed: 0.01
   moveSpeed: 7

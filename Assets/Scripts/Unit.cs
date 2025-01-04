@@ -8,8 +8,8 @@ public class Unit : MonoBehaviour
     public int minHealth;
     public int GoldCost;
     public int featureValue;
-    public float attackSpeed;
     public float moveSpeed;
+    public float attackSpeed;
 
     private Transform targetCastle;
     private Castle enemyCastle;
