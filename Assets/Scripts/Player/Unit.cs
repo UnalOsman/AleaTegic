@@ -13,32 +13,51 @@ public class Unit : MonoBehaviour
 
     private Transform targetCastle;
     private Castle enemyCastle;
+    private IState currentState;
+
+    private void Start()
+    {
+        currentState=new WalkingState();
+        currentState.EnterState(this);
+    }
+
+    private void Update()
+    {
+        currentState.UpdateState(this);
+    }
+
+    public void ChangeState(IState newState)
+    {
+        currentState.ExitState(this);
+        currentState = newState;
+        currentState.EnterState(this);
+    }
 
     public void SetTarget(Transform target)
     {
         targetCastle = target;
-        enemyCastle=target.GetComponent<Castle>();
+        enemyCastle = target.GetComponent<Castle>();
     }
 
-    private void Update()
+    public void UnitMovement()
     {
         if (targetCastle != null)
         {
             float stopDistance = 25f;
 
             Vector3 targetPosition = new Vector3(targetCastle.position.x - stopDistance, transform.position.y, targetCastle.position.z);
-            
 
-            float distanceToTarget=Vector3.Distance(transform.position, targetPosition);
 
-            if(distanceToTarget > 0.1f)
+            float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
+
+            if (distanceToTarget > 0.1f)
             {
                 Vector3 direction = (targetPosition - transform.position).normalized;
                 transform.position += direction * moveSpeed * Time.deltaTime;
             }
             else
             {
-                AttackCastle(attackPower,attackSpeed);
+                AttackCastle(attackPower, attackSpeed);
             }
         }
     }
