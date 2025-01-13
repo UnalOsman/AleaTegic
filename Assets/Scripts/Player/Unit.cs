@@ -23,12 +23,12 @@ public class Unit : MonoBehaviour
 
     private void Update()
     {
-        currentState.UpdateState(this);
+        currentState?.UpdateState(this);
     }
 
     public void ChangeState(IState newState)
     {
-        currentState.ExitState(this);
+        currentState?.ExitState(this);
         currentState = newState;
         currentState.EnterState(this);
     }
@@ -57,17 +57,18 @@ public class Unit : MonoBehaviour
             }
             else
             {
-                AttackCastle(attackPower, attackSpeed);
+                ChangeState(new AttackState());
             }
         }
     }
 
-    private void AttackCastle(int attackPower,float attackSpeed)
+    public void AttackCastle(int attackPower,float attackSpeed)
     {
 
         if(enemyCastle!=null)
         {
             enemyCastle.TakeDamage(attackPower,attackSpeed);
+            ChangeState(new DieState());
         }
     }
 }

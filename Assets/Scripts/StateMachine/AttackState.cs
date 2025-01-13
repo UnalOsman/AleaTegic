@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AttackState : IState
 {
+    
     public void EnterState(Unit player)
     {
         
@@ -14,6 +15,7 @@ public class AttackState : IState
 
     public void UpdateState(Unit player)
     {
-        //player.UnitMovement();
+        player.AttackCastle(player.attackPower, player.attackSpeed);
     }
+
 }
