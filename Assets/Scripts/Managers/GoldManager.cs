@@ -29,7 +29,5 @@ public class GoldManager : MonoBehaviour
             Debug.LogWarning("Yeterli altýn yok!");
             return false;
         }
-        
-
     }
 }

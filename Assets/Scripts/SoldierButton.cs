@@ -9,7 +9,7 @@ public class SoldierButton : MonoBehaviour
 
      void Start()
     {
-        GetComponent<Button>().onClick.AddListener(()=> spawnerManager.SpawnSoldier(soldierIndex));
+        GetComponent<Button>().onClick.AddListener(()=> spawnerManager.SpawnSoldierByIndex(soldierIndex));
     }
 
 }

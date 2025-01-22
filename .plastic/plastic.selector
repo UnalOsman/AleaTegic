@@ -1,0 +1,4 @@
+repository "AleaTegic@UnalOsman@cloud"
+  path "/"
+    br "/main"
+    co "/main"
