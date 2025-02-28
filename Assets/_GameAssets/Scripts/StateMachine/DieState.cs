@@ -4,6 +4,7 @@ public class DieState : IState
 {
     public void EnterState(Unit player)
     {
+        Debug.Log(player.gameObject.name + " öldü.");
         Object.Destroy(player.gameObject);
     }
 

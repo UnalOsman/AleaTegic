@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fff90657b874fdd44bbda53b660803df, type: 3}
-  m_Name: Spearman
+  m_Name: Archer
   m_EditorClassIdentifier: 
-  soldierName: Spearman
-  soldierPrefab: {fileID: 9164053489645117250, guid: f53536b29b83c95488e40c9ca38c092b, type: 3}
+  soldierName: Archer
+  soldierPrefab: {fileID: 9164053489645117250, guid: fdf6f7da66e4fac408b9158e5b16d22b, type: 3}
   attackPower: 20
-  health: 100
-  maxHealth: 100
+  health: 50
+  maxHealth: 50
   minHealth: 0
-  GoldCost: 40
-  featureValue: 1
-  attackSpeed: 0.01
-  moveSpeed: 5
-  attackRange: 2
+  GoldCost: 35
+  featureValue: 3
+  attackSpeed: 0.08
+  moveSpeed: 8
+  attackRange: 7

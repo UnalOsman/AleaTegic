@@ -16,6 +16,7 @@ public class EnemySpawner : BaseSpawnerManager
         if(affordableSoldiers.Count > 0)
         {
             SoldierSO soldier= affordableSoldiers[Random.Range(0,affordableSoldiers.Count)];
+            
             SpawnSoldier(soldier);
         }
         else

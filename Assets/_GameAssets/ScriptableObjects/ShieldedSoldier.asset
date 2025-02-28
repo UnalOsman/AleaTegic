@@ -22,3 +22,4 @@ MonoBehaviour:
   featureValue: 2
   attackSpeed: 0.01
   moveSpeed: 7
+  attackRange: 2

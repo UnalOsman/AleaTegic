@@ -13,5 +13,6 @@ public class SoldierSO : ScriptableObject
     public int featureValue;
     public float attackSpeed;
     public float moveSpeed;
+    public float attackRange;
 
 }

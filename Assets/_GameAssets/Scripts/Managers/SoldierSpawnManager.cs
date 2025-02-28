@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SoldierSpawnManager : BaseSpawnerManager
@@ -8,7 +9,9 @@ public class SoldierSpawnManager : BaseSpawnerManager
         if(index >=0 && allSoldiers.Count > 0 && targetCastle != null)
         {
             SoldierSO soldier = allSoldiers[index];
+            
             SpawnSoldier(soldier);
+
         }
         else
         {
