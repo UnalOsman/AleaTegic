@@ -19,6 +19,7 @@ public class BaseSpawnerManager : MonoBehaviour
         {
             GameObject newSoldier =Instantiate(selectedSoldier.soldierPrefab, spawnPoint.position,Quaternion.identity);
             Unit soldierUnit=newSoldier.GetComponent<Unit>();
+
             soldierUnit.health = selectedSoldier.health;
             soldierUnit.maxHealth = selectedSoldier.maxHealth;
             soldierUnit.minHealth = selectedSoldier.minHealth;
@@ -29,9 +30,18 @@ public class BaseSpawnerManager : MonoBehaviour
             selectedSoldier.featureValue = Random.Range(1, 5);
             soldierUnit.featureValue = selectedSoldier.featureValue;
             soldierUnit.attackPower *= selectedSoldier.featureValue;
-            soldierUnit.attackRange *= selectedSoldier.attackRange;
+            soldierUnit.attackRange = selectedSoldier.attackRange;
 
             soldierUnit.SetTarget(targetCastle);
+
+            if(this is SoldierSpawnManager)
+            {
+                newSoldier.tag = "Player";
+            }
+            else if(this is EnemySpawner)
+            {
+                newSoldier.tag = "Enemy";
+            }
         }
     }
 }

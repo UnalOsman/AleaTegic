@@ -19,7 +19,7 @@ MonoBehaviour:
   maxHealth: 50
   minHealth: 0
   GoldCost: 20
-  featureValue: 3
-  attackSpeed: 0.05
+  featureValue: 1
+  attackSpeed: 1.2
   moveSpeed: 7
-  attackRange: 1
+  attackRange: 7

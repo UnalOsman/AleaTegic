@@ -13,7 +13,7 @@ public class Unit : MonoBehaviour
     public float attackRange;
     public Unit currentTarget;
 
-    private float attackCoolDown = 0f;
+    public float attackCoolDown = 0f;
 
     private Transform targetCastle;
     private Castle enemyCastle;
@@ -28,6 +28,8 @@ public class Unit : MonoBehaviour
     private void Update()
     {
         attackCoolDown -= Time.deltaTime;
+        Debug.Log(gameObject.name + " attackCoolDown : " + attackCoolDown);
+        FindClosestEnemy();
         currentState?.UpdateState(this);
     }
 
@@ -64,7 +66,7 @@ public class Unit : MonoBehaviour
                 }
                 else
                 {
-                    ChangeState(new AttackState());
+                    AttackCastle(attackPower,attackSpeed);
                 }
             }
         }
@@ -77,29 +79,37 @@ public class Unit : MonoBehaviour
         if(enemyCastle!=null)
         {
             enemyCastle.TakeDamage(attackPower,attackSpeed);
-            ChangeState(new DieState());
         }
     }
 
     public void AttackEnemy()
     {
-        if(currentTarget!=null && attackCoolDown <= 0f)
+        Debug.Log("AttackEnemy fonksiyonuna giriþ yapýldý.");
+        if(currentTarget!=null)
         {
             float distanceToTarget=Vector3.Distance(transform.position,currentTarget.transform.position);
+            Debug.Log("Ýlk if içine girildi. DistanceToTarget deðeri : " + distanceToTarget);
 
             if(distanceToTarget <= attackRange)
             {
                 currentTarget.TakeDamage(attackPower);
-                attackCoolDown = 1f / attackSpeed;
                 Debug.Log(gameObject.name + " düþmana saldýrýyor -> " + currentTarget.gameObject.name);
             }
+            else
+            {
+                Debug.Log("Düþman çok uzakta(" + distanceToTarget + "m)");
+            }
+        }
+        else
+        {
+            Debug.Log("Saldýrý iptal edildi çünkü hedef yok.");
         }
     }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
-        Debug.Log(gameObject.name + " hasar aldý." + damage + " Kalan can : " + health);
+        Debug.Log(gameObject.name + " hasar aldý : " + damage + " Kalan can : " + health);
 
         if(health <= 0f)
         {
@@ -107,14 +117,35 @@ public class Unit : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void FindClosestEnemy()
     {
-        Unit enemyUnit = other.GetComponent<Unit>();
+        float closestDistance = Mathf.Infinity;
+        Unit closestEnemy = null;
 
-        if(enemyUnit != null && enemyUnit != this)
+        Unit[] allUnits = FindObjectsOfType<Unit>();
+
+        foreach(Unit unit in allUnits)
         {
-            currentTarget = enemyUnit;
+            if(unit !=this && unit.gameObject.tag != this.gameObject.tag)
+            {
+                float distance= Vector3.Distance(transform.position,unit.transform.position);
+                if(distance < closestDistance && distance <= attackRange)
+                {
+                    closestDistance = distance;
+                    closestEnemy = unit;
+                }
+            }
+        }
+
+        currentTarget = closestEnemy;
+
+        if( currentTarget != null )
+        {
             ChangeState(new AttackState());
+        }
+        else
+        {
+            ChangeState(new WalkingState());
         }
     }
 }
