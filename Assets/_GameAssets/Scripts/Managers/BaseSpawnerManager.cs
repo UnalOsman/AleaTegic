@@ -17,7 +17,14 @@ public class BaseSpawnerManager : MonoBehaviour
     {
         if(goldManager.SpendGold(selectedSoldier.GoldCost))
         {
-            GameObject newSoldier =Instantiate(selectedSoldier.soldierPrefab, spawnPoint.position,Quaternion.identity);
+            float minZ = -8f;
+            float maxZ = 8f;
+
+            float randomZ = Random.Range(minZ, maxZ);
+
+            Vector3 spawnPosition = new Vector3(spawnPoint.position.x, spawnPoint.position.y, randomZ);
+
+            GameObject newSoldier =Instantiate(selectedSoldier.soldierPrefab, spawnPosition,Quaternion.identity);
             Unit soldierUnit=newSoldier.GetComponent<Unit>();
 
             soldierUnit.health = selectedSoldier.health;

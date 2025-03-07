@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class GoldManager : MonoBehaviour
 {
-    public int currentGold = 30;
+    public int currentGold = 50;
     public int incomeRate = 5; // zamanla gelen altýn deðeri
-    public float incomeInterval = 5.0f; // altýn geliri zaman aralýðý
+    public float incomeInterval = 3.0f; // altýn geliri zaman aralýðý
 
     private void Start()
     {

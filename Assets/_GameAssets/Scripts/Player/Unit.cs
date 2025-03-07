@@ -28,7 +28,7 @@ public class Unit : MonoBehaviour
     private void Update()
     {
         attackCoolDown -= Time.deltaTime;
-        Debug.Log(gameObject.name + " attackCoolDown : " + attackCoolDown);
+        //Debug.Log(gameObject.name + " attackCoolDown : " + attackCoolDown);
         FindClosestEnemy();
         currentState?.UpdateState(this);
     }
@@ -54,8 +54,16 @@ public class Unit : MonoBehaviour
             {
                 float stopDistance = 25f;
 
-                Vector3 targetPosition = new Vector3(targetCastle.position.x - stopDistance, transform.position.y, targetCastle.position.z);
+                if(this.gameObject.CompareTag("Player"))
+                {
+                     stopDistance = 25f;
+                }
+                else if(this.gameObject.CompareTag("Enemy"))
+                {
+                     stopDistance = -25f;
+                }
 
+                Vector3 targetPosition = new Vector3(targetCastle.position.x - stopDistance, transform.position.y, targetCastle.position.z);
 
                 float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
 
@@ -78,7 +86,7 @@ public class Unit : MonoBehaviour
 
         if(enemyCastle!=null)
         {
-            enemyCastle.TakeDamage(attackPower,attackSpeed);
+            enemyCastle.TakeDamage(attackPower,this,attackSpeed);
         }
     }
 
@@ -129,6 +137,9 @@ public class Unit : MonoBehaviour
             if(unit !=this && unit.gameObject.tag != this.gameObject.tag)
             {
                 float distance= Vector3.Distance(transform.position,unit.transform.position);
+
+                if (distance < 2f)
+                    continue;
                 if(distance < closestDistance && distance <= attackRange)
                 {
                     closestDistance = distance;

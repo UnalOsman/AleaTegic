@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EnemySpawner : BaseSpawnerManager
 {
+    [SerializeField] private GameObject enemyCastle;
     public float spawnInterval = 5.0f;
 
     private void Start()
@@ -13,7 +14,7 @@ public class EnemySpawner : BaseSpawnerManager
     private void SpawnEnemySoldier()
     {
         List<SoldierSO> affordableSoldiers = allSoldiers.FindAll(s => s.GoldCost <= goldManager.currentGold);
-        if(affordableSoldiers.Count > 0)
+        if(affordableSoldiers.Count > 0 && enemyCastle!=null)
         {
             SoldierSO soldier= affordableSoldiers[Random.Range(0,affordableSoldiers.Count)];
             
