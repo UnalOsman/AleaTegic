@@ -1,8 +1,11 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public int attackPower;
+    /*
+    public int attackPower;1
     public int health;
     public int maxHealth;
     public int minHealth;
@@ -18,19 +21,39 @@ public class Unit : MonoBehaviour
     private Transform targetCastle;
     private Castle enemyCastle;
     private IState currentState;
+    */
+    public int health;
+    public int minHealth;
+    public int maxHealth;
+    public int goldCost;
+    public int featureValue;
+
+    public Unit currentTarget;
+    private IState currentState;
+    private UnitMovement movement;
+    private UnitCombat combat;
+    
 
     private void Start()
     {
+        UnitManager.Instance.RegisterUnit(this);
+        movement = GetComponent<UnitMovement>();
+        combat = GetComponent<UnitCombat>();
+
         currentState=new WalkingState();
         currentState.EnterState(this);
     }
 
     private void Update()
     {
-        attackCoolDown -= Time.deltaTime;
-        //Debug.Log(gameObject.name + " attackCoolDown : " + attackCoolDown);
+        combat.attackCoolDown -= Time.deltaTime;
         FindClosestEnemy();
         currentState?.UpdateState(this);
+    }
+
+    private void OnDestroy()
+    {
+        UnitManager.Instance?.UnregisterUnit(this);
     }
 
     public void ChangeState(IState newState)
@@ -38,80 +61,6 @@ public class Unit : MonoBehaviour
         currentState?.ExitState(this);
         currentState = newState;
         currentState.EnterState(this);
-    }
-
-    public void SetTarget(Transform target)
-    {
-        targetCastle = target;
-        enemyCastle = target.GetComponent<Castle>();
-    }
-
-    public void UnitMovement()
-    {
-        if(currentTarget == null)
-        {
-            if (targetCastle != null)
-            {
-                float stopDistance = 25f;
-
-                if(this.gameObject.CompareTag("Player"))
-                {
-                     stopDistance = 25f;
-                }
-                else if(this.gameObject.CompareTag("Enemy"))
-                {
-                     stopDistance = -25f;
-                }
-
-                Vector3 targetPosition = new Vector3(targetCastle.position.x - stopDistance, transform.position.y, targetCastle.position.z);
-
-                float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
-
-                if (distanceToTarget > 0.1f)
-                {
-                    Vector3 direction = (targetPosition - transform.position).normalized;
-                    transform.position += direction * moveSpeed * Time.deltaTime;
-                }
-                else
-                {
-                    AttackCastle(attackPower,attackSpeed);
-                }
-            }
-        }
-        
-    }
-
-    public void AttackCastle(int attackPower,float attackSpeed)
-    {
-
-        if(enemyCastle!=null)
-        {
-            enemyCastle.TakeDamage(attackPower,this,attackSpeed);
-        }
-    }
-
-    public void AttackEnemy()
-    {
-        Debug.Log("AttackEnemy fonksiyonuna giriþ yapýldý.");
-        if(currentTarget!=null)
-        {
-            float distanceToTarget=Vector3.Distance(transform.position,currentTarget.transform.position);
-            Debug.Log("Ýlk if içine girildi. DistanceToTarget deðeri : " + distanceToTarget);
-
-            if(distanceToTarget <= attackRange)
-            {
-                currentTarget.TakeDamage(attackPower);
-                Debug.Log(gameObject.name + " düþmana saldýrýyor -> " + currentTarget.gameObject.name);
-            }
-            else
-            {
-                Debug.Log("Düþman çok uzakta(" + distanceToTarget + "m)");
-            }
-        }
-        else
-        {
-            Debug.Log("Saldýrý iptal edildi çünkü hedef yok.");
-        }
     }
 
     public void TakeDamage(int damage)
@@ -130,17 +79,18 @@ public class Unit : MonoBehaviour
         float closestDistance = Mathf.Infinity;
         Unit closestEnemy = null;
 
-        Unit[] allUnits = FindObjectsOfType<Unit>();
+        List<Unit> allUnits = UnitManager.Instance.GetAllUnits();
 
-        foreach(Unit unit in allUnits)
+        foreach(Unit unit in allUnits )
         {
             if(unit !=this && unit.gameObject.tag != this.gameObject.tag)
             {
                 float distance= Vector3.Distance(transform.position,unit.transform.position);
 
-                if (distance < 2f)
+                if (distance < 3.5f)
                     continue;
-                if(distance < closestDistance && distance <= attackRange)
+
+                if(distance < closestDistance && distance <= combat.attackRange)
                 {
                     closestDistance = distance;
                     closestEnemy = unit;
@@ -159,4 +109,9 @@ public class Unit : MonoBehaviour
             ChangeState(new WalkingState());
         }
     }
+
+    /*public static implicit operator Transform(Unit v)
+    {
+        throw new NotImplementedException();
+    }*/
 }

@@ -12,13 +12,13 @@ public class Castle : MonoBehaviour
     }
 
 
-    public void TakeDamage(int  damage , Unit player, float attackSpeed=1)
+    public void TakeDamage(int  damage , UnitCombat playerCombat, float attackSpeed=1)
     {
-        if(player.attackCoolDown <= 0f)
+        if(playerCombat.attackCoolDown <= 0f)
         {
             currentHealth -= damage;
-            player.attackCoolDown = Mathf.Max(0.1f, 1f / attackSpeed);
-            Debug.Log("kaleye saldýrý gerçekleþti. AttackCoolDown : " + player.attackCoolDown);
+            playerCombat.attackCoolDown = Mathf.Max(0.1f, 1f / attackSpeed);
+            Debug.Log("kaleye saldýrý gerçekleþti. AttackCoolDown : " + playerCombat.attackCoolDown);
         }
         
 

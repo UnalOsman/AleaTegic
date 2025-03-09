@@ -11,13 +11,15 @@ public class AttackState : IState
 
     public void UpdateState(Unit player)
     {
-        if(player.currentTarget != null && player.currentTarget.health > 0)
+        UnitCombat playerCombat = player.GetComponent<UnitCombat>();
+
+        if (player.currentTarget != null && player.currentTarget.health > 0)
         {
             Debug.Log(player.gameObject.name + " saldýrý yapmaya devam ediyor.");
-            if(player.attackCoolDown <= 0f)
+            if(playerCombat.attackCoolDown <= 0f)
             {
-                player.AttackEnemy();
-                player.attackCoolDown = Mathf.Max(0.1f , 1f / player.attackSpeed);
+                playerCombat.AttackEnemy();
+                playerCombat.attackCoolDown = Mathf.Max(0.1f , 1f / playerCombat.attackSpeed);
                 Debug.Log(player.gameObject.name + " tekrar saldýrdý.");
             }
             

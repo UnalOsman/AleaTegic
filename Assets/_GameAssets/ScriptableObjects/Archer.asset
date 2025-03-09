@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soldierName: Archer
   soldierPrefab: {fileID: 9164053489645117250, guid: fdf6f7da66e4fac408b9158e5b16d22b, type: 3}
-  attackPower: 20
+  attackPower: 10
   health: 50
   maxHealth: 50
   minHealth: 0
-  GoldCost: 35
-  featureValue: 1
-  attackSpeed: 1.8
+  GoldCost: 15
+  featureValue: 2
+  attackSpeed: 1.5
   moveSpeed: 8
-  attackRange: 15
+  attackRange: 8

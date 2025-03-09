@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemySpawner : BaseSpawnerManager
 {
     [SerializeField] private GameObject enemyCastle;
-    public float spawnInterval = 5.0f;
+    public float spawnInterval = 2.0f;
 
     private void Start()
     {

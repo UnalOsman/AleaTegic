@@ -17,8 +17,8 @@ public class BaseSpawnerManager : MonoBehaviour
     {
         if(goldManager.SpendGold(selectedSoldier.GoldCost))
         {
-            float minZ = -8f;
-            float maxZ = 8f;
+            float minZ = -4f;
+            float maxZ = 4f;
 
             float randomZ = Random.Range(minZ, maxZ);
 
@@ -26,20 +26,32 @@ public class BaseSpawnerManager : MonoBehaviour
 
             GameObject newSoldier =Instantiate(selectedSoldier.soldierPrefab, spawnPosition,Quaternion.identity);
             Unit soldierUnit=newSoldier.GetComponent<Unit>();
+            UnitMovement soldierMovement = newSoldier.GetComponent<UnitMovement>();
+            UnitCombat soldierCombat = newSoldier.GetComponent<UnitCombat>();
 
             soldierUnit.health = selectedSoldier.health;
-            soldierUnit.maxHealth = selectedSoldier.maxHealth;
             soldierUnit.minHealth = selectedSoldier.minHealth;
-            soldierUnit.attackPower = selectedSoldier.attackPower;
-            soldierUnit.attackSpeed = selectedSoldier.attackSpeed;
-            soldierUnit.moveSpeed = selectedSoldier.moveSpeed;
-            soldierUnit.GoldCost = selectedSoldier.GoldCost;
+            soldierUnit.maxHealth = selectedSoldier.maxHealth;
+            soldierUnit.goldCost = selectedSoldier.GoldCost;
             selectedSoldier.featureValue = Random.Range(1, 5);
             soldierUnit.featureValue = selectedSoldier.featureValue;
-            soldierUnit.attackPower *= selectedSoldier.featureValue;
-            soldierUnit.attackRange = selectedSoldier.attackRange;
 
-            soldierUnit.SetTarget(targetCastle);
+            soldierCombat.attackRange = selectedSoldier.attackRange;
+            soldierCombat.attackSpeed = selectedSoldier.attackSpeed;
+            soldierCombat.attackPower = selectedSoldier.attackPower;
+            soldierCombat.attackPower *= selectedSoldier.featureValue;
+
+            soldierMovement.moveSpeed = selectedSoldier.moveSpeed;
+
+            if(targetCastle == null)
+            {
+                Debug.LogError(gameObject.name + " için targetCastle NULL! Lütfen Inspector'dan ayarla.");
+            }
+            else
+            {
+                soldierMovement.SetTarget(targetCastle);
+            }
+            
 
             if(this is SoldierSpawnManager)
             {

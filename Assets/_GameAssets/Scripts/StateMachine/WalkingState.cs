@@ -14,6 +14,7 @@ public class WalkingState : IState
 
     public void UpdateState(Unit player)
     {
-        player.UnitMovement();
+        UnitMovement playerMovement = player.GetComponent<UnitMovement>();
+        playerMovement.MoveTowardsTarget();
     }
 }

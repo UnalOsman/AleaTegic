@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soldierName: ShieldedSoldier
   soldierPrefab: {fileID: 9164053489645117250, guid: ad53c88b9ce92474b93631a9142022c2, type: 3}
-  attackPower: 15
+  attackPower: 5
   health: 100
   maxHealth: 100
   minHealth: 0
-  GoldCost: 25
-  featureValue: 4
+  GoldCost: 10
+  featureValue: 1
   attackSpeed: 1
   moveSpeed: 7
-  attackRange: 8
+  attackRange: 4
