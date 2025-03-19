@@ -7,7 +7,7 @@ public class UnitMovement : MonoBehaviour
     private Transform targetCastle;
     private Unit unit;
     private UnitCombat combat;
-    
+
 
     private void Start()
     {
@@ -17,20 +17,31 @@ public class UnitMovement : MonoBehaviour
 
     public void SetTarget(Transform target)
     {
-        targetCastle = target;
+        if (target == null)
+        {
+            Debug.LogError(gameObject.name + " için SetTarget() çaðrýldý ancak target NULL!");
+            return;
+        }
 
-        Castle targetCastleComponent = GetComponent<Castle>();
-        if(combat != null)
+        targetCastle = target;
+        Castle targetCastleComponent = target.GetComponent<Castle>();
+
+        if (targetCastleComponent != null)
         {
             combat.SetTarget(targetCastleComponent);
+            Debug.Log(gameObject.name + " için Castle bulundu ve saldýrý hedefi ayarlandý!" + targetCastleComponent.gameObject.name);
+        }
+        else
+        {
+            Debug.LogError(target.gameObject.name + " objesinde 'Castle' bileþeni bulunamadý!");
         }
     }
 
     public void MoveTowardsTarget()
     {
-        if(unit.currentTarget == null)
+        if (unit.currentTarget == null)
         {
-            if(targetCastle != null)
+            if (targetCastle != null)
             {
                 float stopDistance = 10f;
 
@@ -57,7 +68,8 @@ public class UnitMovement : MonoBehaviour
                     combat.AttackCastle();
                 }
             }
-            
+
         }
     }
 }
+

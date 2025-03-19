@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8424850397443439282}
   - component: {fileID: -6972612431658686961}
-  - component: {fileID: 5152433308512993155}
-  - component: {fileID: 5012098223354887001}
+  - component: {fileID: 3807684215819491866}
+  - component: {fileID: -6525474488849240450}
   - component: {fileID: 3225723048379407120}
   - component: {fileID: 3895879649606333628}
   - component: {fileID: 7362567136978463043}
@@ -56,7 +56,7 @@ MonoBehaviour:
   goldCost: 0
   featureValue: 0
   currentTarget: {fileID: 0}
---- !u!114 &5152433308512993155
+--- !u!114 &3807684215819491866
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0
---- !u!114 &5012098223354887001
+--- !u!114 &-6525474488849240450
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

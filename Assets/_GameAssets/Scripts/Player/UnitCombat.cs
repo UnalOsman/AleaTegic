@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class UnitCombat : MonoBehaviour
 {
@@ -16,49 +15,49 @@ public class UnitCombat : MonoBehaviour
         unit = GetComponent<Unit>();
     }
 
+    public void SetTarget(Castle targetCastle)
+    {
+        if (targetCastle == null)
+        {
+            Debug.LogError(gameObject.name + " için SetTarget() çaðrýldý ancak targetCastle NULL!");
+            return;
+        }
+
+        enemyCastle = targetCastle;
+        Debug.Log(gameObject.name + " için enemyCastle baþarýyla ayarlandý: " + enemyCastle.gameObject.name);
+    }
     private void Update()
     {
         attackCoolDown -= Time.deltaTime;
     }
-    
+
     public void AttackEnemy()
     {
-        if(unit.currentTarget != null && attackCoolDown <= 0f)
+        if (unit.currentTarget != null && attackCoolDown <= 0f)
         {
             float distanceToTarget = Vector3.Distance(transform.position, unit.currentTarget.transform.position);
 
-            if(distanceToTarget <= attackRange)
+            if (distanceToTarget <= attackRange)
             {
                 unit.currentTarget.TakeDamage(attackPower);
                 attackCoolDown = 1f / attackSpeed;
             }
         }
     }
-
-    public void SetTarget(Castle targetCastle)
+    public void AttackCastle()
     {
-        if (targetCastle == null)
+        if (enemyCastle == null)
         {
-            Debug.LogError(gameObject.name + " için SetTarget() çaðýrýldý ancak Target NULL!!");
+            Debug.LogError(gameObject.name + " kaleye saldýrmaya çalýþýyor ancak enemyCastle NULL! SetTarget() düzgün çaðrýlmýþ mý kontrol et.");
             return;
         }
 
-        enemyCastle = targetCastle.GetComponent<Castle>();
-
-        if (enemyCastle == null)
+        if (attackCoolDown <= 0f)
         {
-            Debug.LogError(targetCastle.gameObject.name + " objesinde 'Castle' bileþeni eksik!");
-        }
-    }
-
-    public void AttackCastle()
-    {
-
-        if (enemyCastle != null && attackCoolDown <= 0f)
-        {
-            enemyCastle.TakeDamage(attackPower,this,attackSpeed);
+            enemyCastle.TakeDamage(attackPower, this, attackSpeed);
             attackCoolDown = 1f / attackSpeed;
-            Debug.Log(gameObject.name + " kaleye saldýrýyor.");
+            Debug.Log(gameObject.name + " kaleye saldýrýyor!");
         }
     }
 }
+
