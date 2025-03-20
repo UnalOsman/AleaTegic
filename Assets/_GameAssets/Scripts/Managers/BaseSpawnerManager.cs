@@ -42,7 +42,11 @@ public class BaseSpawnerManager : MonoBehaviour
             soldierCombat.attackPower *= selectedSoldier.featureValue;
 
             soldierMovement.moveSpeed = selectedSoldier.moveSpeed;
-
+            if(targetCastle != null)
+            {
+                soldierMovement.SetTarget(targetCastle);
+            }
+            /*
             if (targetCastle == null)
             {
                 Debug.LogError(gameObject.name + " için targetCastle NULL! Lütfen Inspector'da doðru atandýðýný kontrol et.");
@@ -60,7 +64,7 @@ public class BaseSpawnerManager : MonoBehaviour
                     soldierMovement.SetTarget(targetCastle);
                 }
             }
-
+            */
 
             if (this is SoldierSpawnManager)
             {

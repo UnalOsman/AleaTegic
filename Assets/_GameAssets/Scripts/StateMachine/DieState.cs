@@ -10,7 +10,6 @@ public class DieState : IState
 
     public void ExitState(Unit player)
     {
-        
     }
 
     public void UpdateState(Unit player)
