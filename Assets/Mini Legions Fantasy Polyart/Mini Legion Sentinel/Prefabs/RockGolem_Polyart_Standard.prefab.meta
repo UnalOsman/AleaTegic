@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e8855140cc3cc334084f57d4cb5f54f9
+timeCreated: 1560139289
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 160705
+  packageName: Mini Legions Fantasy Polyart
+  packageVersion: 1.1
+  assetPath: Assets/Mini Legions Fantasy Polyart/Mini Legion Sentinel/Prefabs/RockGolem_Polyart_Standard.prefab
+  uploadId: 421913

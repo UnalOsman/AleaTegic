@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d2d7dc5fec8d6b34d8640a166d001212
+timeCreated: 1564719963
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: -1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 160705
+  packageName: Mini Legions Fantasy Polyart
+  packageVersion: 1.1
+  assetPath: Assets/Mini Legions Fantasy Polyart/CommonMaterialsShaders/Skybox_Mat.mat
+  uploadId: 421913

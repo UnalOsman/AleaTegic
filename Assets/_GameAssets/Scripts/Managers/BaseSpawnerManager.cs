@@ -46,26 +46,7 @@ public class BaseSpawnerManager : MonoBehaviour
             {
                 soldierMovement.SetTarget(targetCastle);
             }
-            /*
-            if (targetCastle == null)
-            {
-                Debug.LogError(gameObject.name + " için targetCastle NULL! Lütfen Inspector'da doðru atandýðýný kontrol et.");
-            }
-            else
-            {
-                Castle castleComponent = targetCastle.GetComponent<Castle>();
-                if (castleComponent == null)
-                {
-                    Debug.LogError(targetCastle.gameObject.name + " objesinde 'Castle' bileþeni eksik! Inspector'da targetCastle'ý kontrol et.");
-                }
-                else
-                {
-                    Debug.Log(newSoldier.name + " için targetCastle atanýyor: " + targetCastle.gameObject.name);
-                    soldierMovement.SetTarget(targetCastle);
-                }
-            }
-            */
-
+            
             if (this is SoldierSpawnManager)
             {
                 newSoldier.tag = "Player";

@@ -4,24 +4,6 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    /*
-    public int attackPower;1
-    public int health;
-    public int maxHealth;
-    public int minHealth;
-    public int GoldCost;
-    public int featureValue;
-    public float moveSpeed;
-    public float attackSpeed;
-    public float attackRange;
-    public Unit currentTarget;
-
-    public float attackCoolDown = 0f;
-
-    private Transform targetCastle;
-    private Castle enemyCastle;
-    private IState currentState;
-    */
     public int health;
     public int minHealth;
     public int maxHealth;

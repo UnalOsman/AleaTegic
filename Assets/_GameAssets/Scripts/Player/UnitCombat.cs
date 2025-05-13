@@ -15,9 +15,14 @@ public class UnitCombat : MonoBehaviour
         unit = GetComponent<Unit>();
     }
 
+    private void Update()
+    {
+        attackCoolDown -= Time.deltaTime;
+    }
+
     public void SetTargetCastle(Transform target)
     {
-        if(target == null)
+        if (target == null)
         {
             Debug.LogError(gameObject.name + " için SetTarget() çaðrýldý ancak targetCastle NULL!");
             return;
@@ -26,24 +31,7 @@ public class UnitCombat : MonoBehaviour
         {
             enemyCastle = target.GetComponent<Castle>();
         }
-        
-    }
-    /*
-    public void SetTarget(Castle targetCastle)
-    {
-        if (targetCastle == null)
-        {
-            Debug.LogError(gameObject.name + " için SetTarget() çaðrýldý ancak targetCastle NULL!");
-            return;
-        }
 
-        enemyCastle = targetCastle;
-        Debug.Log(gameObject.name + " için enemyCastle baþarýyla ayarlandý: " + enemyCastle.gameObject.name);
-    }
-    */
-    private void Update()
-    {
-        attackCoolDown -= Time.deltaTime;
     }
 
     public void AttackEnemy()
