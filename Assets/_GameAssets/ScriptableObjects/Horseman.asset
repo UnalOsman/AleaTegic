@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fff90657b874fdd44bbda53b660803df, type: 3}
-  m_Name: Topcu
+  m_Name: Horseman
   m_EditorClassIdentifier: 
-  soldierName: topcu
-  soldierPrefab: {fileID: 9164053489645117250, guid: 63d4205291931ec438223ee7b0998b10, type: 3}
-  attackPower: 0
-  health: 0
-  maxHealth: 0
+  soldierName: Horseman
+  soldierPrefab: {fileID: 4512195404215359123, guid: 856d34801593ed2439e104a5d69d3fad, type: 3}
+  attackPower: 15
+  health: 125
+  maxHealth: 125
   minHealth: 0
-  GoldCost: 0
+  GoldCost: 25
   featureValue: 0
-  attackSpeed: 0
-  moveSpeed: 0
-  attackRange: 0
+  attackSpeed: 1
+  moveSpeed: 8
+  attackRange: 6

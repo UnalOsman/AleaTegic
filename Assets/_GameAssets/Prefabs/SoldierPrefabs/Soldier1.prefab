@@ -10,14 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 8424850397443439282}
   - component: {fileID: -6972612431658686961}
-  - component: {fileID: -4284701690545727711}
-  - component: {fileID: 2374754533244336301}
+  - component: {fileID: 3807684215819491866}
+  - component: {fileID: -6525474488849240450}
   - component: {fileID: 3225723048379407120}
   - component: {fileID: 3895879649606333628}
   - component: {fileID: 7362567136978463043}
-  - component: {fileID: 5286568339025541654}
+  - component: {fileID: 8864656403257929504}
   m_Layer: 0
-  m_Name: topcu
+  m_Name: Soldier1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   goldCost: 0
   featureValue: 0
   currentTarget: {fileID: 0}
---- !u!114 &-4284701690545727711
+--- !u!114 &3807684215819491866
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0
---- !u!114 &2374754533244336301
+--- !u!114 &-6525474488849240450
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 97b68f4a82786a549bfdcfa6a9469a11, type: 2}
+  - {fileID: 2100000, guid: d0eeda5968e7cfa4f9489bdcead4a426, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -161,7 +161,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &5286568339025541654
+--- !u!54 &8864656403257929504
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
