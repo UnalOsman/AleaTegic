@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: ShieldedSpearman
   m_EditorClassIdentifier: 
   soldierName: ShieldedSpearman
-  soldierPrefab: {fileID: 3990623642308707177, guid: f9f0140f7f4eb5d48a61a93fdabf820b, type: 3}
+  soldierPrefab: {fileID: 6833956203492186339, guid: 3d2ea06c8feceb340b0d0a27340bea20, type: 3}
   attackPower: 10
   health: 125
   maxHealth: 125
   minHealth: 0
-  GoldCost: 20
-  featureValue: 0
+  GoldCost: 15
+  featureValue: 1
   attackSpeed: 1
-  moveSpeed: 4
-  attackRange: 4
+  moveSpeed: 5
+  attackRange: 6

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Spearman
   m_EditorClassIdentifier: 
   soldierName: Spearman
-  soldierPrefab: {fileID: 7359192751987977547, guid: e40abe0228dd75444bbf39ca342f5135, type: 3}
+  soldierPrefab: {fileID: 8378567531525988323, guid: b0f10670006132a4db8bbf76e6bb7ad7, type: 3}
   attackPower: 10
   health: 100
   maxHealth: 100
   minHealth: 0
-  GoldCost: 15
-  featureValue: 3
-  attackSpeed: 1
+  GoldCost: 10
+  featureValue: 1
+  attackSpeed: 1.1
   moveSpeed: 6
-  attackRange: 4
+  attackRange: 6

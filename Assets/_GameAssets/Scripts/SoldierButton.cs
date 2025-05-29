@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class SoldierButton : MonoBehaviour
 {
     public SoldierSpawnManager spawnerManager;
-    public int soldierIndex;
+    [SerializeField] private int soldierIndex;
 
 
      void Start()

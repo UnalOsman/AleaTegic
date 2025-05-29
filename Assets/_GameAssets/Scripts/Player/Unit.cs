@@ -10,17 +10,22 @@ public class Unit : MonoBehaviour
     public int goldCost;
     public int featureValue;
 
+    public Transform currentTargetCastle;
     public Unit currentTarget;
     private IState currentState;
     private UnitMovement movement;
     private UnitCombat combat;
-    
+
+    private void Awake()
+    {
+        movement = GetComponent<UnitMovement>();
+        combat = GetComponent<UnitCombat>();
+    }
 
     private void Start()
     {
         UnitManager.Instance.RegisterUnit(this);
-        movement = GetComponent<UnitMovement>();
-        combat = GetComponent<UnitCombat>();
+        
 
         currentState=new WalkingState();
         currentState.EnterState(this);
@@ -28,7 +33,7 @@ public class Unit : MonoBehaviour
 
     private void Update()
     {
-        combat.attackCoolDown -= Time.deltaTime;
+        combat.attackCoolDown -= Time.deltaTime * 0.2f;
         FindClosestEnemy();
         currentState?.UpdateState(this);
     }
@@ -49,6 +54,9 @@ public class Unit : MonoBehaviour
     {
         health -= damage;
         Debug.Log(gameObject.name + " hasar aldý : " + damage + " Kalan can : " + health);
+
+        var anim = gameObject.GetComponent<UnitAnimation>();
+        if (anim != null) { anim.PlayHit(); }
 
         if(health <= 0f)
         {
@@ -80,20 +88,26 @@ public class Unit : MonoBehaviour
             }
         }
 
-        currentTarget = closestEnemy;
-
-        if( currentTarget != null )
+        if (closestEnemy != null)
         {
+            currentTarget = closestEnemy;
             ChangeState(new AttackState());
         }
         else
         {
+            // Kale menzildeyse ona saldýr
+            if (currentTargetCastle != null)
+            {
+                float distanceToCastle = Vector3.Distance(transform.position, currentTargetCastle.position);
+                if (distanceToCastle - 10f <= combat.attackRange)
+                {
+                    ChangeState(new AttackState());
+                    return;
+                }
+            }
+
             ChangeState(new WalkingState());
         }
     }
 
-    /*public static implicit operator Transform(Unit v)
-    {
-        throw new NotImplementedException();
-    }*/
 }

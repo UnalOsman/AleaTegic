@@ -1,11 +1,22 @@
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SoldierSpawnManager : BaseSpawnerManager
 {
     [SerializeField] private GameObject playerCastle;
-   public void SpawnSoldierByIndex(int index)
+
+    private void Awake()
+    {
+        GameObject enemyCastleObj = GameObject.FindGameObjectWithTag("EnemyCastle");
+        if (enemyCastleObj != null)
+        {
+            targetCastle = enemyCastleObj.transform;
+        }
+        else
+        {
+            Debug.LogError("EnemyCastle sahnede bulunamadý!");
+        }
+    }
+    public void SpawnSoldierByIndex(int index)
     {
         if(index >=0 && allSoldiers.Count > 0 && targetCastle != null && playerCastle!=null)
         {

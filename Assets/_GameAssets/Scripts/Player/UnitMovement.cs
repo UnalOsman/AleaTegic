@@ -64,7 +64,8 @@ public class UnitMovement : MonoBehaviour
                 }
                 else
                 {
-                    combat.AttackCastle();
+                    unit.ChangeState(new AttackState());
+                    //combat.AttackCastle();
                 }
             }
 

@@ -5,28 +5,45 @@ public class AttackState : IState
     public void EnterState(Unit player)
     {
         Debug.Log(player.gameObject.name + " saldýrý durumuna geçti!");
+
+        var anim = player.GetComponent<UnitAnimation>();
+        if (anim != null) { anim.PlayAttack(); }
     }
 
     public void UpdateState(Unit player)
     {
-        UnitCombat playerCombat = player.GetComponent<UnitCombat>();
+        var combat = player.GetComponent<UnitCombat>();
+        Castle castle = combat.GetEnemyCastle();
 
+        // Eðer hedef varsa ve yaþýyorsa ona saldýr
         if (player.currentTarget != null && player.currentTarget.health > 0)
         {
-            Debug.Log(player.gameObject.name + " saldýrý yapmaya devam ediyor.");
-            if(playerCombat.attackCoolDown <= 0f)
+            if (combat.attackCoolDown <= 0f)
             {
-                playerCombat.AttackEnemy();
-                playerCombat.attackCoolDown = Mathf.Max(0.1f , 1f / playerCombat.attackSpeed);
-                Debug.Log(player.gameObject.name + " tekrar saldýrdý.");
+                combat.AttackEnemy();
+                combat.attackCoolDown = Mathf.Max(0.1f, 1f / combat.attackSpeed);
             }
         }
-        else
+        // Eðer hedef yok ama kaleye yakýnsa ? kaleye saldýr
+        else if (castle != null)
         {
-            //currentTarget null olduðunda, asker kalenin menzilinde olmamasýna raðmen kaleye hasar veriyor.
-            player.ChangeState(new WalkingState());
-            Debug.Log(player.gameObject.name + " düþman öldü, yürümeye devam ediyor...");
+            float distanceToCastle = Vector3.Distance(player.transform.position, castle.transform.position);
+
+            if (distanceToCastle -10f <= combat.attackRange)
+            {
+                if (combat.attackCoolDown <= 0f)
+                {
+                    combat.AttackCastle();
+                    combat.attackCoolDown = Mathf.Max(0.1f, 1f / combat.attackSpeed);
+                }
+            }
+            else
+            {
+                player.ChangeState(new WalkingState());
+                Debug.Log(player.gameObject.name + " kaleye hâlâ uzak, yürümeye geçiyor.");
+            }
         }
+
     }
     public void ExitState(Unit player)
     {

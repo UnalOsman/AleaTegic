@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff90657b874fdd44bbda53b660803df, type: 3}
+  m_Name: Tank
+  m_EditorClassIdentifier: 
+  soldierName: Tank
+  soldierPrefab: {fileID: 2256951445248698782, guid: 04be3cd76409ef14e8baf1388099d53a, type: 3}
+  attackPower: 20
+  health: 200
+  maxHealth: 200
+  minHealth: 0
+  GoldCost: 30
+  featureValue: 0
+  attackSpeed: 0.75
+  moveSpeed: 3
+  attackRange: 10

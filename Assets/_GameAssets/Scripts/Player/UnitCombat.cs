@@ -10,6 +10,8 @@ public class UnitCombat : MonoBehaviour
     private Unit unit;
     private Castle enemyCastle;
 
+    
+
     private void Start()
     {
         unit = GetComponent<Unit>();
@@ -54,17 +56,21 @@ public class UnitCombat : MonoBehaviour
             Debug.LogError(gameObject.name + " kaleye saldýrmaya çalýþýyor ancak enemyCastle NULL! SetTarget() düzgün çaðrýlmýþ mý kontrol et.");
             return;
         }
-        else
-        {
-            if (attackCoolDown <= 0f)
-            {
-                enemyCastle.TakeDamage(attackPower, this, attackSpeed);
-                attackCoolDown = 1f / attackSpeed;
-                Debug.Log(gameObject.name + " kaleye saldýrýyor!");
-            }
-        }
+
+        enemyCastle.TakeDamage(attackPower, this, attackSpeed);
+        //attackCoolDown = 1f / attackSpeed;
+        Debug.Log(gameObject.name + " kaleye saldýrýyor!");
 
         
+    }
+    public void SetTarget(Castle castle)
+    {
+        enemyCastle = castle;
+    }
+
+    public Castle GetEnemyCastle()
+    {
+        return enemyCastle;
     }
 }
 

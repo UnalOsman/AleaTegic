@@ -6,6 +6,19 @@ public class EnemySpawner : BaseSpawnerManager
     [SerializeField] private GameObject enemyCastle;
     public float spawnInterval = 2.0f;
 
+    private void Awake()
+    {
+        GameObject playerCastleObj = GameObject.FindGameObjectWithTag("PlayerCastle");
+        if (playerCastleObj != null)
+        {
+            targetCastle = playerCastleObj.transform;
+        }
+        else
+        {
+            Debug.LogError("PlayerCastle sahnede bulunamadý!");
+        }
+    }
+
     private void Start()
     {
         InvokeRepeating(nameof(SpawnEnemySoldier), spawnInterval, spawnInterval);

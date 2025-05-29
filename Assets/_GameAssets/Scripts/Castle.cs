@@ -3,8 +3,9 @@ using UnityEngine;
 public class Castle : MonoBehaviour
 {
     public int maxHealth = 1000;
-    private float currentHealth;
 
+    private float currentHealth;
+    public bool isPlayerCastle;
 
     private void Start()
     {
@@ -33,6 +34,15 @@ public class Castle : MonoBehaviour
     void DestroyCastle()
     {
         Debug.Log("Kale yok edildi.");
+
+        if (GameManager.Instance != null)
+        {
+            if (isPlayerCastle)
+                GameManager.Instance.Lose();  // oyuncunun kalesi yok oldu
+            else
+                GameManager.Instance.Win();   // düþmanýn kalesi yok oldu
+        }
+
         Destroy(gameObject);
     }
 

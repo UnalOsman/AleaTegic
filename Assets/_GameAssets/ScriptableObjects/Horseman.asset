@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Horseman
   m_EditorClassIdentifier: 
   soldierName: Horseman
-  soldierPrefab: {fileID: 4512195404215359123, guid: 856d34801593ed2439e104a5d69d3fad, type: 3}
+  soldierPrefab: {fileID: 1314224965033108584, guid: fb6b8d9cdd7b0b54a8f38bd1afeb8a6c, type: 3}
   attackPower: 15
   health: 125
   maxHealth: 125
   minHealth: 0
-  GoldCost: 25
+  GoldCost: 20
   featureValue: 0
   attackSpeed: 1
-  moveSpeed: 8
-  attackRange: 6
+  moveSpeed: 6
+  attackRange: 8

@@ -7,7 +7,7 @@ public class BaseSpawnerManager : MonoBehaviour
      
     
     [SerializeField] public Transform targetCastle;
-    [SerializeField] protected Transform spawnPoint;
+    [SerializeField] protected Transform Spawner;
 
     [Header("References")]
     public GoldManager goldManager;
@@ -15,16 +15,17 @@ public class BaseSpawnerManager : MonoBehaviour
 
     public void SpawnSoldier(SoldierSO selectedSoldier)
     {
-        if(goldManager.SpendGold(selectedSoldier.GoldCost))
+
+        if (goldManager.SpendGold(selectedSoldier.GoldCost))
         {
-            float minZ = -4f;
-            float maxZ = 4f;
+            float minZ = 31f;
+            float maxZ = 40f;
 
             float randomZ = Random.Range(minZ, maxZ);
 
-            Vector3 spawnPosition = new Vector3(spawnPoint.position.x, spawnPoint.position.y, randomZ);
 
-            GameObject newSoldier =Instantiate(selectedSoldier.soldierPrefab, spawnPosition,Quaternion.identity);
+            GameObject newSoldier =Instantiate(selectedSoldier.soldierPrefab, new Vector3(Spawner.position.x, Spawner.position.y, randomZ),Quaternion.identity);
+            Debug.Log("Spawnlanan karakter pozisyonu: " + newSoldier.transform.position);
             Unit soldierUnit=newSoldier.GetComponent<Unit>();
             UnitMovement soldierMovement = newSoldier.GetComponent<UnitMovement>();
             UnitCombat soldierCombat = newSoldier.GetComponent<UnitCombat>();
@@ -45,6 +46,8 @@ public class BaseSpawnerManager : MonoBehaviour
             if(targetCastle != null)
             {
                 soldierMovement.SetTarget(targetCastle);
+                soldierCombat.SetTarget(targetCastle.GetComponent<Castle>());
+                soldierUnit.currentTargetCastle = targetCastle;
             }
             
             if (this is SoldierSpawnManager)
